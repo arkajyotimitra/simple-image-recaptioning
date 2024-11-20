@@ -21,6 +21,7 @@ def save_results(output_queue, output_dir):
 
             if len(item) == 4:
                 original_captions, outputs, img_bytes, img_hashes = item
+                watermark_scores = None
             else:
                 original_captions, outputs, img_bytes, img_hashes, watermark_scores = item
 
