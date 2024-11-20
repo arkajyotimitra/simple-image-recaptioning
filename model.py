@@ -23,6 +23,11 @@ def load_vllm_engine(model_name, max_tokens=120):
 
 def infer(model_name, vllm_engine, inputs):
     sampling_params = inputs.pop("sampling_params")
-    vllm_inputs = [{"prompt": PROMPT_MAP[model_name], "multi_modal_data": {"image": image}} for image in inputs["original_images"]]
+    vllm_inputs = [
+        {
+            "prompt": PROMPT_MAP[model_name],
+            "multi_modal_data": {"image": image}
+        } for image in inputs["original_images"]
+    ]
     outputs = vllm_engine.generate(vllm_inputs, sampling_params)
     return outputs
