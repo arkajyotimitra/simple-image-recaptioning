@@ -11,6 +11,7 @@ from utils import save_results
 
 
 def main(
+    model_name: str,
     data_path: str,
     batch_size: int = 48,
     dataloader_num_workers: int = 8,
@@ -18,7 +19,10 @@ def main(
     max_tokens: int = 120,
     detect_watermarks: Union[bool, str] = False,
 ):
-    vllm_engine, sampling_params = load_vllm_engine(max_tokens=max_tokens)
+    vllm_engine, sampling_params = load_vllm_engine(
+        model_name=model_name,
+        max_tokens=max_tokens
+    )
 
     dataloader = initialize_dataloader(
         data_path=data_path,
@@ -37,7 +41,7 @@ def main(
         print("Starting the generation process.")
         for batch in tqdm(dataloader):
             batch["sampling_params"] = sampling_params
-            outputs = infer(vllm_engine, batch)
+            outputs = infer(model_name, vllm_engine, batch)
             original_captions = batch["original_captions"]
             img_bytes = batch["img_bytes"]
             img_hashes = batch["img_hashes"]

@@ -1,4 +1,7 @@
-PROMPT = """
+####################################################################################################
+# LLAVA
+####################################################################################################
+LLAVA_PROMPT = """
 [INST] <image>\nYou are an advanced vision-language model tasked with generating accurate and comprehensive captions for images. Follow these steps and guidelines:
 
 1. Image Analysis:
@@ -32,4 +35,11 @@ Remember, your captions will be used to train a text-to-image generation model, 
 [/INST]
 """
 
-CKPT_ID = "llava-hf/llava-v1.6-mistral-7b-hf"
+LLAVA_CKPT_ID = "llava-hf/llava-v1.6-mistral-7b-hf"
+
+####################################################################################################
+# QWEN VL
+####################################################################################################
+QWEN_VL_PROMPT = "Describe the image"
+
+QWEN_VL_CKPT_ID = "Qwen/Qwen2-VL-7B-Instruct"
