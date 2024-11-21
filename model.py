@@ -14,20 +14,15 @@ PROMPT_MAP = {
     "qwen-vl": QWEN_VL_PROMPT,
 }
 
-def load_vllm_engine(model_name, max_tokens=120):
+def load_vllm_engine(model_name="llava", max_tokens=120):
     devices = torch.cuda.device_count()
     vllm_engine = LLM(CKPT_ID_MAP[model_name], tensor_parallel_size=devices)
     sampling_params = SamplingParams(max_tokens=max_tokens)
     return vllm_engine, sampling_params
 
 
-def infer(model_name, vllm_engine, inputs):
+def infer(vllm_engine, inputs, model_name="llava"):
     sampling_params = inputs.pop("sampling_params")
-    vllm_inputs = [
-        {
-            "prompt": PROMPT_MAP[model_name],
-            "multi_modal_data": {"image": image}
-        } for image in inputs["original_images"]
-    ]
+    vllm_inputs = [{"prompt": PROMPT_MAP[model_name], "multi_modal_data": {"image": image}} for image in inputs["original_images"]]
     outputs = vllm_engine.generate(vllm_inputs, sampling_params)
     return outputs

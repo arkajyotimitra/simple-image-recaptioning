@@ -11,8 +11,8 @@ from utils import save_results
 
 
 def main(
-    model_name: str,
     data_path: str,
+    model_name: str = "llava",
     batch_size: int = 48,
     dataloader_num_workers: int = 8,
     output_dir: str = "sample_outputs",
@@ -41,7 +41,7 @@ def main(
         print("Starting the generation process.")
         for batch in tqdm(dataloader):
             batch["sampling_params"] = sampling_params
-            outputs = infer(model_name, vllm_engine, batch)
+            outputs = infer(model_name=model_name, vllm_engine=vllm_engine, inputs=batch)
             original_captions = batch["original_captions"]
             img_bytes = batch["img_bytes"]
             img_hashes = batch["img_hashes"]
