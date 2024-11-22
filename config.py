@@ -37,6 +37,7 @@ LLAVA_CKPT_ID = "llava-hf/llava-v1.6-mistral-7b-hf"
 ####################################################################################################
 # QWEN VL
 ####################################################################################################
+# Note: This might not be the most optimized prompt for captions that when trained for image generations leads to good results.
 QWEN_VL_PROMPT = """\
 <|im_start|>system\nYou are a helpful assistant.<|im_end|>\n\
 <|im_start|>user\n<|vision_start|><|image_pad|><|vision_end|>\

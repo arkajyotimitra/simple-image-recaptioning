@@ -2,12 +2,16 @@
 
 Recaption large (Web)Datasets with [`vllm`](https://github.com/vllm-project/vllm/) and save the artifacts. It is NOT a library. It, instead, provides reference points that you're free to use and modify. 
 
+You can use `LLaVA` or `Qwen-VL` to "re-caption" your images.
+
 > [!NOTE]
-> I use the code of this repository for my projects and I don't claim this project to be out of the world. If you want to contribute an enhancement feature, you're more than welcome to open a PR. I'd greatly appreciate it. 
+> I use the code of this repository for my projects and I don't claim this project to be out of the world. If you want to contribute an enhancement feature, you're more than welcome to open a PR. I'd greatly appreciate it.
 
 ## Getting started
 
-Install the requirements: `pip install -r requirements.txt`. Then run:
+Install the requirements: `pip install -r requirements.txt`.
+
+Then run:
 
 ```bash
 python main.py \
