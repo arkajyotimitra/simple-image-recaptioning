@@ -2,12 +2,16 @@
 
 Recaption large (Web)Datasets with [`vllm`](https://github.com/vllm-project/vllm/) and save the artifacts. It is NOT a library. It, instead, provides reference points that you're free to use and modify. 
 
+You can use `LLaVA` or `Qwen-VL` to "re-caption" your images.
+
 > [!NOTE]
-> I use the code of this repository for my projects and I don't claim this project to be out of the world. If you want to contribute an enhancement feature, you're more than welcome to open a PR. I'd greatly appreciate it. 
+> I use the code of this repository for my projects and I don't claim this project to be out of the world. If you want to contribute an enhancement feature, you're more than welcome to open a PR. I'd greatly appreciate it.
 
 ## Getting started
 
-Install the requirements: `pip install -r requirements.txt`. Then run:
+Install the requirements: `pip install -r requirements.txt`.
+
+Then run:
 
 ```bash
 python main.py \
@@ -32,9 +36,41 @@ You can allow watermark detection by passing `--detect_watermarks`. Note that th
 * `onnx` and `onnxruntime` dependencies.
 * Install `pip install git+https://github.com/sayakpaul/watermark-detection`. Then follow [the steps](https://github.com/sayakpaul/watermark-detection?tab=readme-ov-file#onnx-usage-limited-to-convnext-tiny) to obtain the ONNX model needed for watermark detection.
 
-By default, the script will use all the available GPUs. Refer to the `main.py` script for a full list of the supported CLI arguments.
+By default, the script will use all the available GPUs. I tested the above commands on two A100s and on eight H100s.
 
-I tested the above commands on two A100s and on eight H100s.
+## List of CLI Arguments
+
+```shell
+NAME
+    main.py
+
+SYNOPSIS
+    main.py DATA_PATH <flags>
+
+POSITIONAL ARGUMENTS
+    DATA_PATH
+        Type: str
+
+FLAGS
+    --model_name=MODEL_NAME
+        Type: str
+        Default: 'llava'
+    -b, --batch_size=BATCH_SIZE
+        Type: int
+        Default: 48
+    --dataloader_num_workers=DATALOADER_NUM_WORKERS
+        Type: int
+        Default: 8
+    -o, --output_dir=OUTPUT_DIR
+        Type: str
+        Default: 'sample_outputs'
+    --max_tokens=MAX_TOKENS
+        Type: int
+        Default: 120
+    --detect_watermarks=DETECT_WATERMARKS
+        Type: typing.Union[bool, str]
+        Default: False
+```
 
 ## Principles
 

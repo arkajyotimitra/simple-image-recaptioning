@@ -1,4 +1,7 @@
-PROMPT = """
+####################################################################################################
+# LLAVA
+####################################################################################################
+LLAVA_PROMPT = """\
 [INST] <image>\nYou are an advanced vision-language model tasked with generating accurate and comprehensive captions for images. Follow these steps and guidelines:
 
 1. Image Analysis:
@@ -27,9 +30,18 @@ c. Make sure the caption is neither too vague nor overly specific.
 a. Present the final caption as a single, well-formed sentence or paragraph.
 b. Ensure the caption is clear, concise, and accurately represents the image content.
 
-Remember, your captions will be used to train a text-to-image generation model, so strive for accuracy and completeness in your descriptions.
+Remember, your captions will be used to train a text-to-image generation model, so strive for accuracy and completeness in your descriptions. [/INST]"""
 
-[/INST]
-"""
+LLAVA_CKPT_ID = "llava-hf/llava-v1.6-mistral-7b-hf"
 
-CKPT_ID = "llava-hf/llava-v1.6-mistral-7b-hf"
+####################################################################################################
+# QWEN VL
+####################################################################################################
+# Note: This might not be the most optimized prompt for captions that when trained for image generations leads to good results.
+QWEN_VL_PROMPT = """\
+<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n\
+<|im_start|>user\n<|vision_start|><|image_pad|><|vision_end|>\
+f"What is in the image?<|im_end|>\n\
+<|im_start|>assistant\n"""
+
+QWEN_VL_CKPT_ID = "Qwen/Qwen2-VL-7B-Instruct"
